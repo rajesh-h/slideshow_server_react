@@ -13,8 +13,8 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         db.run(`CREATE TABLE slider (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title,
-            imageurl text, 
-            description text,            
+            imageurl text,
+            description text,
             CONSTRAINT title_unique UNIQUE (title)
             )`,
         (err) => {
@@ -27,7 +27,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 db.run(insert, ["Title-1","/PathToImage1","This is image 1"])
                 db.run(insert, ["Title-2","/PathToImage2","This is Image 2"])
             }
-        });  
+        });
     }
 });
 

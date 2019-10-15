@@ -16,14 +16,14 @@ app.use(express.static('public'))
 
 
 // Server port
-var HTTP_PORT = 8000 
+var HTTP_PORT = 8000
 // Start server
 app.listen(HTTP_PORT, () => {
     console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
 });
 // Root endpoint
 app.get("/", (req, res, next) => {
-    res.json({"message":"Ok"})
+    res.json({"message":"Backend Server Up and  Running ..."})
 });
 
 // Insert here other API endpoints
@@ -102,18 +102,18 @@ app.patch("/api/slide/:id", (req, res, next) => {
     var data = {
         title: req.body.title,
         imageurl: req.body.imageurl,
-        description : req.body.description 
+        description : req.body.description
     }
     db.run(
-        `UPDATE slider set 
-           title = COALESCE(?,title), 
-           imageurl = COALESCE(?,imageurl), 
-           description = COALESCE(?,description) 
+        `UPDATE slider set
+           title = COALESCE(?,title),
+           imageurl = COALESCE(?,imageurl),
+           description = COALESCE(?,description)
            WHERE id = ?`,
         [data.title, data.imageurl, data.description, req.params.id],
         function (err, result) {
-            if (err){ 
-                console.log(err)               
+            if (err){
+                console.log(err)
                 res.status(400).json({"error": res.message})
                 return;
             }
